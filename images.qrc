@@ -1,0 +1,23 @@
+<RCC version="1.0">
+    <qresource prefix="images">
+        <file alias="day_light_rain.png">./allUI/images/day_light_rain.png</file>
+        <file alias="night_light_rain.png">./allUI/images/night_light_rain.png</file>
+        <file alias="day_moderate_rain.png">./allUI/images/day_moderate_rain.png</file>
+        <file alias="night_moderate_rain.png">./allUI/images/night_moderate_rain.png</file>
+        <file alias="day_heavy_rain.png">./allUI/images/day_heavy_rain.png</file>
+        <file alias="night_heavy_rain.png">./allUI/images/night_heavy_rain.png</file>
+        <file alias="day_rainstorm.png">./allUI/images/day_rainstorm.png</file>
+        <file alias="night_rainstorm.png">./allUI/images/night_rainstorm.png</file>
+        <file alias="day_rainstorm2downpour.png">./allUI/images/day_rainstorm2downpour.png</file>
+        <file alias="night_rainstorm2downpour.png">./allUI/images/night_rainstorm2downpour.png</file>
+        <file alias="day_shower.png">./allUI/images/day_shower.png</file>
+        <file alias="night_shower.png">./allUI/images/night_shower.png</file>
+        <file alias="day_cloudy.png">./allUI/images/day_cloudy.png</file>
+        <file alias="night_cloudy.png">./allUI/images/night_cloudy.png</file>
+        <file alias="day_sunny.png">./allUI/images/day_sunny.png</file>
+        <file alias="night_sunny.png">./allUI/images/night_sunny.png</file>
+        <file alias="day_Thunder_shower.png">./allUI/images/day_Thunder_shower.png</file>
+        <file alias="night_Thunder_shower.png">./allUI/images/night_Thunder_shower.png</file>
+
+    </qresource>
+</RCC>
