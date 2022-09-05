@@ -39,13 +39,13 @@
      <string>主界面</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="tips_plainTextEdit">
+   <widget class="QTextEdit" name="tips_textEdit">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>50</y>
-      <width>351</width>
-      <height>121</height>
+      <width>251</width>
+      <height>181</height>
      </rect>
     </property>
     <property name="readOnly">
@@ -55,18 +55,21 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>21</x>
-      <y>184</y>
-      <width>647</width>
+      <x>10</x>
+      <y>240</y>
+      <width>644</width>
       <height>194</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPlainTextEdit" name="plainTextEdit_1"/>
+      <widget class="QPlainTextEdit" name="plainTextEdit"/>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QComboBox" name="comboBox_1"/>
+       </item>
        <item>
         <widget class="QPushButton" name="translate_Button">
          <property name="text">
@@ -92,21 +95,49 @@
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="pic_label">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>10</y>
-      <width>141</width>
-      <height>161</height>
+      <x>270</x>
+      <y>0</y>
+      <width>391</width>
+      <height>238</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QTextEdit" name="textEdit_2">
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QPushButton" name="file_Button">
+           <property name="text">
+            <string>图片上传</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_ocr"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="ocr_textEdit">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

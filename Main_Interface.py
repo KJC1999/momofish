@@ -1,12 +1,13 @@
 """
-创建人：孔健聪
+创建人：KinChung
 创建时间：2022/08/11
 """
 import sys
-import time
 import Translate
 import Calculator
 import Translate_custom
+import Trending_topic
+import images
 from allUI import Main_Interface
 from Common.debugtalk import *
 from PyQt5.QtWidgets import *
@@ -25,6 +26,7 @@ class MainWindow(Main_Interface.Ui_MainWindow, QMainWindow):
         # 将button绑定触发事件
         self.pushButton_1.clicked.connect(self.go_translate)
         self.pushButton_2.clicked.connect(self.go_calculator)
+        self.pushButton_3.clicked.connect(self.go_Hots)
         self.pushButton_10.clicked.connect(self.go_translate_custom)
         # 捕获下拉索引的改变，绑定触发事件
         self.City_comboBox.currentIndexChanged.connect(self.selection_change)
@@ -65,16 +67,16 @@ class MainWindow(Main_Interface.Ui_MainWindow, QMainWindow):
         self.label_night_tem.setText('%s %s℃' % (wea['night_wea'], wea['night_tem']))
 
     def get_images(self, wea_str):
-        imags = {"day_小雨": 'allUI/images/day_light_rain.png', "night_小雨": 'allUI/images/night_light_rain.png',
-                 "day_中雨": 'allUI/images/day_moderate_rain.png', "night_中雨": 'allUI/images/night_moderate_rain.png',
-                 "day_大雨": 'allUI/images/day_heavy_rain.png', "night_大雨": 'allUI/images/night_heavy_rain.png',
-                 "day_暴雨": 'allUI/images/day_rainstorm.png', "night_暴雨": 'allUI/images/night_rainstorm.png',
-                 "day_暴雨到大暴雨": 'allUI/images/day_rainstorm2downpour.png',
-                 "night_暴雨到大暴雨": 'allUI/images/night_rainstorm2downpour.png',
-                 "day_阵雨": 'allUI/images/day_shower.png', "night_阵雨": 'allUI/images/night_shower.png',
-                 "day_多云": 'allUI/images/day_cloudy.png', "night_多云": 'allUI/images/night_cloudy.png',
-                 "day_晴": 'allUI/images/day_sunny.png', "night_晴": 'allUI/images/night_sunny.png',
-                 "day_雷阵雨": 'allUI/images/day_Thunder_shower.png', "night_雷阵雨": 'allUI/images/night_Thunder_shower.png'
+        imags = {"day_小雨": ':/allUI/images/day_light_rain.png', "night_小雨": ':/allUI/images/night_light_rain.png',
+                 "day_中雨": ':/allUI/images/day_moderate_rain.png', "night_中雨": ':/allUI/images/night_moderate_rain.png',
+                 "day_大雨": ':/allUI/images/day_heavy_rain.png', "night_大雨": ':/allUI/images/night_heavy_rain.png',
+                 "day_暴雨": ':/allUI/images/day_rainstorm.png', "night_暴雨": ':/allUI/images/night_rainstorm.png',
+                 "day_暴雨到大暴雨": ':/allUI/images/day_rainstorm2downpour.png',
+                 "night_暴雨到大暴雨": ':/allUI/images/night_rainstorm2downpour.png',
+                 "day_阵雨": ':/allUI/images/day_shower.png', "night_阵雨": ':/allUI/images/night_shower.png',
+                 "day_多云": ':/allUI/images/day_cloudy.png', "night_多云": ':/allUI/images/night_cloudy.png',
+                 "day_晴": ':/allUI/images/day_sunny.png', "night_晴": ':/allUI/images/night_sunny.png',
+                 "day_雷阵雨": ':/allUI/images/day_Thunder_shower.png', "night_雷阵雨": ':/allUI/images/night_Thunder_shower.png'
                  }
         return imags[wea_str]
 
@@ -91,6 +93,11 @@ class MainWindow(Main_Interface.Ui_MainWindow, QMainWindow):
     def go_translate_custom(self):
         self.hide()
         self.H_win = Translate_custom.CustomWindow()  # 实例化另外一个窗口
+        self.H_win.show()  # 显示新窗口
+
+    def go_Hots(self):
+        self.hide()
+        self.H_win = Trending_topic.TrendingTopicWindow()  # 实例化另外一个窗口
         self.H_win.show()  # 显示新窗口
 
 if __name__ == '__main__':

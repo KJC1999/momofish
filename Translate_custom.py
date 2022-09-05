@@ -1,5 +1,5 @@
 """
-创建人：孔健聪
+创建人：KinChung
 创建时间：2022/08/20
 """
 import sys
@@ -26,8 +26,8 @@ class CustomWindow(Translate_custom.Ui_MainWindow, QMainWindow):
 
     def translate_custom(self):
         # 获取上方左侧定制化窗口内文本（获取到的为str）
-        input = self.plainTextEdit_3.toPlainText().replace('\n', '').replace(' ', '')
-        language = self.City_comboBox.currentText()
+        input = self.textEdit_1.toPlainText().replace('\n', '').replace(' ', '')
+        language = self.Lang_comboBox.currentText()
         if len(input) > 0 and len(language) > 0:
             # 将翻译内容输出到plainText中
             self.plainTextEdit_4.setPlainText(translate_custom(input, language))
@@ -37,7 +37,7 @@ class CustomWindow(Translate_custom.Ui_MainWindow, QMainWindow):
     def translate(self):
         index = []
         result = ''
-        text_input = self.plainTextEdit_1.toPlainText()
+        text_input = self.textEdit_2.toPlainText()
         if len(text_input) > 0:
             # 根据输入的内容，若存在换行符，则切割分为数组存放
             content = str(text_input).split('\n')
@@ -61,11 +61,11 @@ class CustomWindow(Translate_custom.Ui_MainWindow, QMainWindow):
         self.window.show()
 
     def clear1(self):
-        self.plainTextEdit_1.clear()
+        self.textEdit_1.clear()
         self.plainTextEdit_2.clear()
 
     def clear2(self):
-        self.plainTextEdit_3.clear()
+        self.textEdit_2.clear()
         self.plainTextEdit_4.clear()
 
 

@@ -244,49 +244,49 @@
      <item>
       <widget class="QPushButton" name="pushButton_3">
        <property name="text">
-        <string>实时热榜</string>
+        <string>热搜🔥</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_4">
        <property name="text">
-        <string>工具3号</string>
+        <string>444</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_5">
        <property name="text">
-        <string>工具4号</string>
+        <string>555</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_6">
        <property name="text">
-        <string>工具5号</string>
+        <string>666</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_7">
        <property name="text">
-        <string>工具6号</string>
+        <string>777</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_8">
        <property name="text">
-        <string>工具7号</string>
+        <string>888</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_9">
        <property name="text">
-        <string>工具8号</string>
+        <string>999</string>
        </property>
       </widget>
      </item>

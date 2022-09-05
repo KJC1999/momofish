@@ -1,0 +1,1 @@
+([('Line', '/Users/edy/PycharmProjects/momofish/dist/Line', 'EXECUTABLE')],)
