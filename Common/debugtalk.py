@@ -15,7 +15,7 @@ import requests
 import ssl
 from bs4 import BeautifulSoup
 from urllib import request, parse
-from paddleocr import PaddleOCR
+# from paddleocr import PaddleOCR
 
 # 百度AI平台应用id及密钥
 tran_appid = '20220820001314146'  # 百度翻译id
@@ -36,7 +36,6 @@ language_type = {'中文简体': 'zh',
 
 
 def ocr_api(filePath):
-    result = []
     request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic"
     # 二进制方式打开图片文件
     f = open(filePath, 'rb')
@@ -48,22 +47,23 @@ def ocr_api(filePath):
     # 调取百度OCR接口
     request_url = request_url + "?access_token=" + access_token
     headers = {'content-type': 'application/x-www-form-urlencoded'}
-    response = requests.post(request_url, data=params, headers=headers)
-    return response
+    response = requests.post(request_url, data=params, headers=headers).json()
+    result = response['words_result']
+    return result
 
 
-def local_ocr(filePath, lang):
-    """
-    本地调用PaddleOCR服务
-    """
-    # 用ocr_result存放结果并return
-    ocr_result = []
-    # 本地ocr需要传两个参数：lang和filePath
-    ocr = PaddleOCR(use_angle_cls=True, lang=lang)  # need to run only once to download and load model into memory
-    result = ocr.ocr(filePath, cls=True)
-    for line in result:
-        ocr_result.append(line[1][0])
-    return ocr_result
+# def local_ocr(filePath, lang):
+#     """
+#     本地调用PaddleOCR服务
+#     """
+#     # 用ocr_result存放结果并return
+#     ocr_result = []
+#     # 本地ocr需要传两个参数：lang和filePath
+#     ocr = PaddleOCR(use_angle_cls=True, lang=lang)  # need to run only once to download and load model into memory
+#     result = ocr.ocr(filePath, cls=True)
+#     for line in result:
+#         ocr_result.append(line[1][0])
+#     return ocr_result
 
 
 def translate_api(content, tolang):

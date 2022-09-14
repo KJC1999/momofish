@@ -10,7 +10,7 @@ import Main_Interface
 from allUI import Translate
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
-from Common.debugtalk import translate_api, local_ocr
+from Common.debugtalk import translate_api, ocr_api
 
 # 定义全局变量result（给线程赋值使用）
 variable = {'trans_input': '',      # 翻译文本框内容
@@ -44,6 +44,23 @@ class Trans(QThread):
         self.sinout.emit(1)
 
 
+# 本地OCR类（暂时停用）
+# class OCR(QThread):
+#     sinout = pyqtSignal(int)  # 自定义信号，执行run()函数时，从相关线程发射此信号
+#
+#     def __init__(self):
+#         super().__init__()
+#
+#     def run(self):
+#         global variable
+#         result_list = local_ocr(variable['fileName_choose'], variable['lang_ocr'])
+#         for i in range(len(result_list)):
+#             variable['result_ocr'] += result_list[i] + '\n'
+#         print(variable['result_ocr'])
+#         self.sinout.emit(1)
+
+
+# 百度OCR接口调用
 class OCR(QThread):
     sinout = pyqtSignal(int)  # 自定义信号，执行run()函数时，从相关线程发射此信号
 
@@ -52,9 +69,11 @@ class OCR(QThread):
 
     def run(self):
         global variable
-        result_list = local_ocr(variable['fileName_choose'], variable['lang_ocr'])
+        result = ''
+        result_list = ocr_api(variable['fileName_choose'])
         for i in range(len(result_list)):
-            variable['result_ocr'] += result_list[i] + '\n'
+            result += result_list[i]['words'] + '\n'
+            variable['result_ocr'] = result
         print(variable['result_ocr'])
         self.sinout.emit(1)
 
@@ -66,8 +85,8 @@ class TranslateWindow(Translate.Ui_MainWindow, QMainWindow):
         self.plainTextEdit.setPlaceholderText('请输入需要翻译的内容')
         self.tips_textEdit.setPlaceholderText('温馨提示：\n\n'
                                                    '使用之前请确认网络环境良好\n\n'
-                                                   '本工具使用的是百度翻译，正所谓冤有头债有主......\n\n'
-                                                   '感谢paddleocr对本OCR工具的大力支持，开源大佬666')
+                                                   '本工具使用的是百度翻译及百度OCR识别，正所谓冤有头债有主......\n\n'
+                                                   '后续会考虑引入paddleocr的本地OCR，目前引入后问题暂时无法解决')
         self.cwd = os.getcwd()  # 获取当前程序文件位置
         self.file_Button.clicked.connect(self.useOcr)
         # 设置翻译内的Combobox列表
@@ -144,6 +163,7 @@ class TranslateWindow(Translate.Ui_MainWindow, QMainWindow):
         self.hide()
         self.window = Main_Interface.MainWindow()
         self.window.show()
+        self.window.move(self.pos())
 
 
 if __name__ == "__main__":

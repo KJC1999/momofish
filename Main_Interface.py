@@ -47,7 +47,7 @@ class MainWindow(Main_Interface.Ui_MainWindow, QMainWindow):
         self.label_time.setText(timePlay)
         self.label_date.setText(datePlay)
         self.plainTextEdit.setPlainText("各位打工人%s好！\n"
-                                                 "今日摸鱼宣言： 偶尔摸鱼有害健康,常常摸鱼收获满满。\n\n"
+                                                 "今日摸鱼宣言： 偶尔摸鱼有害健康，常常摸鱼收获满满。\n\n"
                                                  "%s" % (momofish_week(weekPlay), momofish_declaration()))
 
     def selection_change(self):
@@ -84,21 +84,26 @@ class MainWindow(Main_Interface.Ui_MainWindow, QMainWindow):
         self.hide()
         self.T_win = Translate.TranslateWindow()    # 实例化另外一个窗口
         self.T_win.show()   # 显示新窗口
+        self.T_win.move(self.pos())
 
     def go_calculator(self):
         self.hide()
         self.C_win = Calculator.CalculatorWindow()  # 实例化另外一个窗口
         self.C_win.show()  # 显示新窗口
+        self.C_win.move(self.pos())
 
     def go_translate_custom(self):
         self.hide()
         self.H_win = Translate_custom.CustomWindow()  # 实例化另外一个窗口
         self.H_win.show()  # 显示新窗口
+        self.H_win.move(self.pos())
 
     def go_Hots(self):
         self.hide()
         self.H_win = Trending_topic.TrendingTopicWindow()  # 实例化另外一个窗口
         self.H_win.show()  # 显示新窗口
+        self.H_win.move(self.pos())
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)  # 创建QApplication对象，作为GUI主程序入口

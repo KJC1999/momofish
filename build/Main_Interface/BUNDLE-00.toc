@@ -1,3 +1,0 @@
-([('Main_Interface',
-   '/Users/edy/PycharmProjects/momofish/dist/Main_Interface',
-   'EXECUTABLE')],)

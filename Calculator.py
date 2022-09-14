@@ -106,6 +106,7 @@ class CalculatorWindow(Calculator.Ui_MainWindow, QMainWindow):
         self.hide()
         self.window = Main_Interface.MainWindow()
         self.window.show()
+        self.window.move(self.pos())
 
 
 if __name__ == '__main__':

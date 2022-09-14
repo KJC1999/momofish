@@ -46,6 +46,6 @@ exe = EXE(
 app = BUNDLE(
     exe,
     name='Main_Interface.app',
-    icon='allUI/images/logo.png',
+    icon='./allUI/images/logo.png',
     bundle_identifier=None,
 )
