@@ -38,7 +38,7 @@
       <x>130</x>
       <y>20</y>
       <width>51</width>
-      <height>381</height>
+      <height>391</height>
      </rect>
     </property>
     <property name="tabletTracking">
@@ -197,26 +197,13 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QComboBox" name="City_comboBox">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>10</y>
-      <width>104</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="currentText">
-     <string/>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>20</y>
       <width>122</width>
-      <height>381</height>
+      <height>391</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -305,11 +292,24 @@
       <x>170</x>
       <y>180</y>
       <width>481</width>
-      <height>221</height>
+      <height>231</height>
      </rect>
     </property>
     <property name="readOnly">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="City_comboBox">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>10</y>
+      <width>104</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="currentText">
+     <string/>
     </property>
    </widget>
    <zorder>layoutWidget</zorder>
@@ -322,8 +322,8 @@
    <zorder>label_night_wea</zorder>
    <zorder>label_night_wea_pic</zorder>
    <zorder>label_night_tem</zorder>
-   <zorder>City_comboBox</zorder>
    <zorder>plainTextEdit</zorder>
+   <zorder>pushButton_4</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

@@ -35,6 +35,5 @@ import sys
 #     sys.exit(app.exec_())
 
 from PyQt5.QtWebEngineWidgets import *
-import PyQt5.QtWebEngineWidgets
-print(PyQt5.QtWebEngineWidgets.path)
+
 
