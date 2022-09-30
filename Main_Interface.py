@@ -33,11 +33,11 @@ class MainWindow(Main_Interface.Ui_MainWindow, QMainWindow):
 
         self.Timer = QTimer()  # 自定义QTimer类
         self.Timer.start(500)  # 每0.5s运行一次
-        self.Timer.timeout.connect(self.update_time)  # 与updateTime函数连接
+        self.Timer.timeout.connect(self.update_time)  # 与update_time函数连接
 
         self.Timer2 = QTimer()  # 自定义QTimer类
-        self.Timer2.start(3600000)  # 每1小时更新一次
-        self.Timer2.timeout.connect(self.selection_change)  # 与updateTime函数连接
+        self.Timer2.start(3600000)  # 每小时更新一次
+        self.Timer2.timeout.connect(self.selection_change)  # 与selection_change函数连接
 
     def update_time(self):
         time = QDateTime.currentDateTime()  # 获取现在的时间

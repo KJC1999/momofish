@@ -125,6 +125,8 @@ def get_weather(city):
                   '香洲': '101280704',
                   '端州': '101280904',
                   '宝安': '101280605'}
+    if len(city) == 0:
+        city = '香洲'
     url = 'http://www.weather.com.cn/weather1d/' + city_codes[city] + '.shtml'
     req = request.urlopen(url)
     html = req.read().decode('utf-8')
