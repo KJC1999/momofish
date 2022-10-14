@@ -29,6 +29,7 @@ class CalculatorWindow(Calculator.Ui_MainWindow, QMainWindow):
         self.btnDiv.clicked.connect(self.btnDiv_clicked)
         self.btnEqual.clicked.connect(self.btnEqual_clicked)
         self.btnReset.clicked.connect(self.btnReset_clicker)
+        self.btn_doc.clicked.connect(self.btnDoc_clicked)
         self.main_Button.clicked.connect(self.backTo)  # 跳转主页面
 
     def btnClear_clicked(self):
@@ -68,28 +69,95 @@ class CalculatorWindow(Calculator.Ui_MainWindow, QMainWindow):
         self.lineEdit.insert("00")
 
     def btnPlus_clicked(self):
-        self.lineEdit.insert(" + ")
+        text = self.lineEdit.text()
+        if len(text) < 3:
+            if len(text) == 0:
+                self.error_message()
+            else:
+                self.lineEdit.insert(' + ')
+        else:
+            # 判断前方是否有符号，只要存在符号，则先去符号，再重新插入符号
+            if text[-2] in ['+', '-', '*', '/']:
+                for i in range(3):
+                    text = text[:-1]
+                self.lineEdit.clear()
+                self.lineEdit.insert(text + ' + ')
+            else:
+                self.lineEdit.insert(' + ')
 
     def btnSub_clicked(self):
-        self.lineEdit.insert(" - ")
+        text = self.lineEdit.text()
+        if len(text) < 3:
+            if len(text) == 0:
+                self.error_message()
+            else:
+                self.lineEdit.insert(' - ')
+        else:
+            # 判断前方是否有符号，只要存在符号，则先去符号，再重新插入符号
+            if text[-2] in ['+', '-', '*', '/']:
+                for i in range(3):
+                    text = text[:-1]
+                self.lineEdit.clear()
+                self.lineEdit.insert(text + ' - ')
+            else:
+                self.lineEdit.insert(' - ')
 
     def btnMul_clicked(self):
-        self.lineEdit.insert(" * ")
+        text = self.lineEdit.text()
+        if len(text) < 3:
+            if len(text) == 0:
+                self.error_message()
+            else:
+                self.lineEdit.insert(' * ')
+        else:
+            # 判断前方是否有符号，只要存在符号，则先去符号，再重新插入符号
+            if text[-2] in ['+', '-', '*', '/']:
+                for i in range(3):
+                    text = text[:-1]
+                self.lineEdit.clear()
+                self.lineEdit.insert(text + ' * ')
+            else:
+                self.lineEdit.insert(' * ')
 
     def btnDiv_clicked(self):
-        self.lineEdit.insert(" / ")
+        text = self.lineEdit.text()
+        if len(text) < 3:
+            if len(text) == 0:
+                self.error_message()
+            else:
+                self.lineEdit.insert(' / ')
+        else:
+            # 判断前方是否有符号，只要存在符号，则先去符号，再重新插入符号
+            if text[-2] in ['+', '-', '*', '/']:
+                for i in range(3):
+                    text = text[:-1]
+                self.lineEdit.clear()
+                self.lineEdit.insert(text + ' / ')
+            else:
+                self.lineEdit.insert(' / ')
+
+    def btnDoc_clicked(self):
+        text = self.lineEdit.text()
+        if len(text) == 0:
+            self.error_message()
+        elif text[-1] in ['1', '2', '3', '4', '5', '6', '7', '8', '9']:
+            self.lineEdit.insert(".")
+        else:
+            self.error_message()
 
     def btnEqual_clicked(self):
         text = self.lineEdit.text()
+        print(text)
         if len(text) == 0:
             return 0
         else:
             try:
                 result = (eval(text))
                 self.lineEdit.clear()
-                self.lineEdit.insert('%.2f' % result)
+                self.lineEdit.insert(str(result))
                 self.plainTextEdit.insertPlainText(text + ' = ' + str(result) + '\n')
-            except Exception as err:
+            except Exception as e:
+                print(e)
                 self.error_message()
 
     def error_message(self):

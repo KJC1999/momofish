@@ -34,12 +34,19 @@ class Trans(QThread):
         result = ''     # 字符串定义，保证每次获取的字符串都是全新的
         # 根据输入的内容，若存在换行符，则切割分为数组存放
         content = str(variable['trans_input']).split('\n')
+        print(content)
         # 根据index长度，进行逐个翻译
         for i in range(len(content)):
-            index.append(translate_api(content[i], variable['lang_trans']))
+            if content[i] is None:
+                pass
+            else:
+                index.append(translate_api(content[i], variable['lang_trans']))
         for j in range(len(index)):
-            result += index[j] + '\n'
-            variable['result_trans'] = result
+            if index[j] is None:
+                pass
+            else:
+                result += index[j] + '\n'
+                variable['result_trans'] = result
         print(variable['result_trans'])
         self.sinout.emit(1)
 

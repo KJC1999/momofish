@@ -9,11 +9,11 @@ from setuptools import setup
 
 APP = ['Main_Interface.py']
 DATA_FILES = []
-OPTIONS = {'iconfile': 'icon.icns',
+OPTIONS = {'iconfile': 'icon.icns',     # 应用icon
            'plist': {
                         'CFBundleName': 'momofish',  # 应用名
                         'CFBundleDisplayName': 'momofish',  # 应用显示名
-                        'CFBundleVersion': '1.0.1',  # 应用版本号
+                        'CFBundleVersion': '1.0.2',  # 应用版本号
                     }
            }
 
