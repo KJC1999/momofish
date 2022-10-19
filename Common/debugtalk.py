@@ -35,12 +35,16 @@ language_type = {'中文简体': 'zh',
                  '韩文': 'kor'}
 
 
-def ocr_api(filePath):
+def ocr_api(method, param):
+    # 根据传入的方法，进行文件/图片base64区分
+    if method == 'file':
+        # 二进制方式打开图片文件
+        f = open(param, 'rb')
+        img = base64.b64encode(f.read())
+        params = {"image": img}
+    elif method == 'base64':
+        params = {"image": param}
     request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic"
-    # 二进制方式打开图片文件
-    f = open(filePath, 'rb')
-    img = base64.b64encode(f.read())
-    params = {"image": img}
     # 先调取鉴权token
     host = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=BKFVKZyxGL3lDF37B8mug1x1&client_secret=Yq4OhwCry8ZKbvaz0t3tZDLYt0Y9wGNG'
     access_token = requests.get(host).json()['access_token']
@@ -297,3 +301,17 @@ def CSDN_trendingTopic():
         hots.append([data[i]['articleDetailUrl'], data[i]['articleTitle']])
     # print(hots)
     return hots
+
+
+def compare_big(left, right):
+    """
+    :param left:若判断图片/文本框大小，则通常传入width
+    :param right: 若判断图片/文本框大小，则通常传入height
+    :return:返回对与错，自行进行下一级结果处理
+    """
+    if left > right:
+        return 0
+    else:
+        return 1
+
+

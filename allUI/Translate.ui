@@ -31,52 +31,48 @@
     <item row="0" column="1">
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>                 </string>
+       <string/>
       </property>
      </widget>
     </item>
     <item row="0" column="2">
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>                  </string>
+       <string/>
       </property>
      </widget>
     </item>
     <item row="0" column="3" rowspan="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <widget class="QTextEdit" name="textEdit_2">
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QTextEdit" name="textEdit_2">
-          <property name="readOnly">
-           <bool>false</bool>
+         <widget class="QPushButton" name="upload_Button">
+          <property name="text">
+           <string>开始识别</string>
           </property>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QPushButton" name="file_Button">
-            <property name="text">
-             <string>图片上传</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="comboBox_ocr"/>
-          </item>
-         </layout>
+         <widget class="QComboBox" name="comboBox_ocr"/>
         </item>
        </layout>
       </item>
-      <item>
-       <widget class="QTextEdit" name="ocr_textEdit">
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
      </layout>
+    </item>
+    <item row="0" column="4" rowspan="2">
+     <widget class="QTextEdit" name="ocr_textEdit">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
     <item row="1" column="0" colspan="3">
      <widget class="QTextEdit" name="tips_textEdit">
@@ -85,8 +81,8 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0" colspan="4">
-     <layout class="QHBoxLayout" name="horizontalLayout">
+    <item row="2" column="0" colspan="5">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QPlainTextEdit" name="plainTextEdit"/>
       </item>

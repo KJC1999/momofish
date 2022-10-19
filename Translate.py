@@ -7,6 +7,7 @@ import sys
 import os
 import images
 import Main_Interface
+import Common.rewrite
 from allUI import Translate
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
@@ -67,8 +68,26 @@ class Trans(QThread):
 #         self.sinout.emit(1)
 
 
-# 百度OCR接口调用
-class OCR(QThread):
+# 百度OCR接口调用--本地文件
+# class file_OCR(QThread):
+#     sinout = pyqtSignal(int)  # 自定义信号，执行run()函数时，从相关线程发射此信号
+#
+#     def __init__(self):
+#         super().__init__()
+#
+#     def run(self):
+#         global variable
+#         result = ''
+#         result_list = ocr_api('file', variable['fileName_choose'])
+#         for i in range(len(result_list)):
+#             result += result_list[i]['words'] + '\n'
+#             variable['result_ocr'] = result
+#         print(variable['result_ocr'])
+#         self.sinout.emit(1)
+
+
+# 百度OCR接口调用--图片文件/粘贴截图
+class pic_OCR(QThread):
     sinout = pyqtSignal(int)  # 自定义信号，执行run()函数时，从相关线程发射此信号
 
     def __init__(self):
@@ -77,7 +96,7 @@ class OCR(QThread):
     def run(self):
         global variable
         result = ''
-        result_list = ocr_api(variable['fileName_choose'])
+        result_list = ocr_api('base64', Common.rewrite.Pic_base64)
         for i in range(len(result_list)):
             result += result_list[i]['words'] + '\n'
             variable['result_ocr'] = result
@@ -92,10 +111,9 @@ class TranslateWindow(Translate.Ui_MainWindow, QMainWindow):
         self.plainTextEdit.setPlaceholderText('请输入需要翻译的内容')
         self.tips_textEdit.setPlaceholderText('温馨提示：\n\n'
                                                    '使用之前请确认网络环境良好\n\n'
-                                                   '本工具使用的是百度翻译及百度OCR识别，正所谓冤有头债有主......\n\n'
-                                                   '后续会考虑引入paddleocr的本地OCR，目前引入后问题暂时无法解决')
+                                                   '本工具使用的是百度翻译及百度OCR识别，正所谓冤有头债有主......')
         self.cwd = os.getcwd()  # 获取当前程序文件位置
-        self.file_Button.clicked.connect(self.useOcr)
+        self.textEdit_2.setPlaceholderText('支持拖拽图片文件&粘贴图片\n\nTips:尽量避免直接粘贴图片文件')
         # 设置翻译内的Combobox列表
         items_trans = ['中文简体', '中文繁体', '英文', '日文', '韩文']
         self.comboBox_1.addItems(items_trans)
@@ -105,36 +123,38 @@ class TranslateWindow(Translate.Ui_MainWindow, QMainWindow):
         self.comboBox_ocr.addItems(items_ocr)
         self.comboBox_ocr.setCurrentIndex(0)  # 设置当前下拉框默认选项为中文
         # 将各button进行点击连接（clicker）
+        self.upload_Button.clicked.connect(self.upload_Ocr)
         self.translate_Button.clicked.connect(self.useTrans)     # 翻译
         self.clear_Button.clicked.connect(self.clear)
         self.main_Button.clicked.connect(self.backTo)  # 跳转主页面
         # 线程相关
-        self.ocrThread = OCR()
-        self.ocrThread.sinout.connect(self.showOcr)  # 将showOcr与槽函数相连
+        self.pic_ocrThread = pic_OCR()
+        self.pic_ocrThread.sinout.connect(self.showOcr)  # 将showOcr与槽函数相连
         self.transThread = Trans()
         self.transThread.sinout.connect(self.showTrans)  # 将showTrans与槽函数相连
 
-    """
-    创建人：KinChung
-    创建时间：2022/08/23
-    """
-    def useOcr(self):
-        global variable
-        language_type = {'中文': 'ch', '英文': 'en',
-                         '法语': 'fr', '德语': 'german',
-                         '韩文': 'korean', '日文': 'japan'}
-        variable['lang_ocr'] = language_type[self.comboBox_ocr.currentText()]
-        variable['fileName_choose'], filetype = QFileDialog.getOpenFileName(self,
-                                                                "选取文件",
-                                                                self.cwd,  # 起始路径
-                                                                "Picture Files (*.jpg *.png *.jpeg);;"
-                                                                "All Files (*)")  # 设置文件扩展名过滤,用双分号间隔
-        if variable['fileName_choose'] == "":
-            print("\n取消选择")
-            return
-        else:
-            print(variable['fileName_choose'])
-            self.ocrThread.start()
+    # """
+    # 创建人：KinChung
+    # 创建时间：2022/08/23
+    # """
+    # def useOcr(self):
+    #     global variable
+    #     language_type = {'中文': 'ch', '英文': 'en',
+    #                      '法语': 'fr', '德语': 'german',
+    #                      '韩文': 'korean', '日文': 'japan'}
+    #     variable['lang_ocr'] = language_type[self.comboBox_ocr.currentText()]
+    #     variable['fileName_choose'], filetype = QFileDialog.getOpenFileName(self,
+    #                                                             "选取文件",
+    #                                                             self.cwd,  # 起始路径
+    #                                                             "Picture Files (*.jpg *.png *.jpeg);;"
+    #                                                             "All Files (*)")  # 设置文件扩展名过滤,用双分号间隔
+    #     if variable['fileName_choose'] == "":
+    #         print("\n取消选择")
+    #         return
+    #     else:
+    #         print(variable['fileName_choose'])
+    #         self.ocr_textEdit.setText('生成中......')
+    #         self.file_ocrThread.start()
 
     def useTrans(self):
         global variable
@@ -153,7 +173,10 @@ class TranslateWindow(Translate.Ui_MainWindow, QMainWindow):
             self.error_message()
 
     def showOcr(self):
-        self.ocr_textEdit.setText(variable['result_ocr'])
+        if variable['result_ocr'] is None:
+            self.ocr_textEdit.setText('返回内容为空，请确认网络环境或文本框内容')
+        else:
+            self.ocr_textEdit.setText(variable['result_ocr'])
 
     def showTrans(self):
         self.plainTextEdit_2.clear()    # 先清空输出文本框，再显示结果
@@ -171,6 +194,10 @@ class TranslateWindow(Translate.Ui_MainWindow, QMainWindow):
         self.window = Main_Interface.MainWindow()
         self.window.show()
         self.window.move(self.pos())
+
+    def upload_Ocr(self):
+        self.ocr_textEdit.setText('生成中......')
+        self.pic_ocrThread.start()
 
 
 if __name__ == "__main__":

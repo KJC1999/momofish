@@ -147,7 +147,6 @@ class CalculatorWindow(Calculator.Ui_MainWindow, QMainWindow):
 
     def btnEqual_clicked(self):
         text = self.lineEdit.text()
-        print(text)
         if len(text) == 0:
             return 0
         else:
@@ -161,7 +160,12 @@ class CalculatorWindow(Calculator.Ui_MainWindow, QMainWindow):
                 self.error_message()
 
     def error_message(self):
+        screen = QDesktopWidget().screenGeometry()
+        size = self.geometry()  # 获取主界面 初始坐标
         self.reply = QMessageBox(QMessageBox.Warning, "", "输入内容有误！！！")
+        x = size.x()+int(size.width()/4)+35
+        y = size.y()+int(size.height()/4)+27
+        self.reply.move(x, y)  # 子界面移动到 居中
         self.reply.show()
 
     def btnBack_clicked(self):
