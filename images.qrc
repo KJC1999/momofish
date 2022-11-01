@@ -18,6 +18,8 @@
         <file>allUI/images/night_sunny.png</file>
         <file>allUI/images/day_Thunder_shower.png</file>
         <file>allUI/images/night_Thunder_shower.png</file>
+        <file>allUI/images/day_overcast.png</file>
+        <file>allUI/images/night_overcast.png</file>
         <file>allUI/images/logo.png</file>
     </qresource>
 </RCC>

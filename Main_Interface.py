@@ -73,6 +73,7 @@ class MainWindow(Main_Interface.Ui_MainWindow, QMainWindow):
                  "day_暴雨": ':/allUI/images/day_rainstorm.png', "night_暴雨": ':/allUI/images/night_rainstorm.png',
                  "day_暴雨到大暴雨": ':/allUI/images/day_rainstorm2downpour.png',
                  "night_暴雨到大暴雨": ':/allUI/images/night_rainstorm2downpour.png',
+                 "day_阴": ':/allUI/images/day_overcast.png', "night_阴": ':/allUI/images/day_overcast.png',
                  "day_阵雨": ':/allUI/images/day_shower.png', "night_阵雨": ':/allUI/images/night_shower.png',
                  "day_多云": ':/allUI/images/day_cloudy.png', "night_多云": ':/allUI/images/night_cloudy.png',
                  "day_晴": ':/allUI/images/day_sunny.png', "night_晴": ':/allUI/images/night_sunny.png',

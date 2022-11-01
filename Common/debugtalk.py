@@ -47,11 +47,11 @@ def ocr_api(method, param):
     request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic"
     # 先调取鉴权token
     host = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=BKFVKZyxGL3lDF37B8mug1x1&client_secret=Yq4OhwCry8ZKbvaz0t3tZDLYt0Y9wGNG'
-    access_token = requests.get(host).json()['access_token']
+    access_token = requests.get(host, verify=False).json()['access_token']
     # 调取百度OCR接口
     request_url = request_url + "?access_token=" + access_token
     headers = {'content-type': 'application/x-www-form-urlencoded'}
-    response = requests.post(request_url, data=params, headers=headers).json()
+    response = requests.post(request_url, data=params, headers=headers, verify=False).json()
     result = response['words_result']
     return result
 
@@ -268,9 +268,9 @@ def weiBo_trendingTopic():
     # 获取访客cookie
     cookie_url = "https://passport.weibo.com/visitor/visitor?a=incarnate&t=" + parse.quote(
         tid) + "&w=2&c=095&gc=&cb=cross_domain&from=weibo"
-    session.get(url=cookie_url.encode('utf-8'), headers=headers)
+    session.get(url=cookie_url.encode('utf-8'), headers=headers, verify=False)
     # 发送get请求
-    res = session.get(url=hots_url, headers=headers)
+    res = session.get(url=hots_url, headers=headers, verify=False)
     # 对响应信息进行转码解析
     html = res.content.decode('utf-8', "ignore")
     soup = BeautifulSoup(html, 'html.parser')

@@ -13,7 +13,7 @@ OPTIONS = {'iconfile': 'icon.icns',     # 应用icon
            'plist': {
                         'CFBundleName': 'momofish',  # 应用名
                         'CFBundleDisplayName': 'momofish',  # 应用显示名
-                        'CFBundleVersion': '1.0.3',  # 应用版本号
+                        'CFBundleVersion': '1.0.4',  # 应用版本号
                     }
            }
 
